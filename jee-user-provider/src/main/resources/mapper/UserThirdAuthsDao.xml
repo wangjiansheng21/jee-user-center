@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jee.boot.user.provider.dao.UserThirdAuthsDao">
+
+    <resultMap id="BaseResultMap" type="org.jee.boot.user.provider.entity.UserThirdAuths">
+        <!--@Table user_third_auths-->
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="userId" column="user_id" jdbcType="INTEGER"/>
+        <result property="identityType" column="identity_type" jdbcType="OTHER"/>
+        <result property="identifier" column="identifier" jdbcType="VARCHAR"/>
+        <result property="createdTime" column="created_time" jdbcType="TIMESTAMP"/>
+        <result property="updatedTime" column="updated_time" jdbcType="TIMESTAMP"/>
+        <result property="version" column="version" jdbcType="INTEGER"/>
+        <result property="deleted" column="deleted" jdbcType="OTHER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BaseResultMap">
+        select
+          id, user_id, identity_type, identifier, created_time, updated_time, version, deleted
+        from user_center.user_third_auths
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BaseResultMap">
+        select
+          id, user_id, identity_type, identifier, created_time, updated_time, version, deleted
+        from user_center.user_third_auths
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="BaseResultMap">
+        select
+          id, user_id, identity_type, identifier, created_time, updated_time, version, deleted
+        from user_center.user_third_auths
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="userId != null">
+                and user_id = #{userId}
+            </if>
+            <if test="identityType != null">
+                and identity_type = #{identityType}
+            </if>
+            <if test="identifier != null and identifier != ''">
+                and identifier = #{identifier}
+            </if>
+            <if test="createdTime != null">
+                and created_time = #{createdTime}
+            </if>
+            <if test="updatedTime != null">
+                and updated_time = #{updatedTime}
+            </if>
+            <if test="version != null">
+                and version = #{version}
+            </if>
+            <if test="deleted != null">
+                and deleted = #{deleted}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into user_center.user_third_auths(user_id, identity_type, identifier, created_time, updated_time, version, deleted)
+        values (#{userId}, #{identityType}, #{identifier}, #{createdTime}, #{updatedTime}, #{version}, #{deleted})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update user_center.user_third_auths
+        <set>
+            <if test="userId != null">
+                user_id = #{userId},
+            </if>
+            <if test="identityType != null">
+                identity_type = #{identityType},
+            </if>
+            <if test="identifier != null and identifier != ''">
+                identifier = #{identifier},
+            </if>
+            <if test="createdTime != null">
+                created_time = #{createdTime},
+            </if>
+            <if test="updatedTime != null">
+                updated_time = #{updatedTime},
+            </if>
+            <if test="version != null">
+                version = #{version},
+            </if>
+            <if test="deleted != null">
+                deleted = #{deleted},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from user_center.user_third_auths where id = #{id}
+    </delete>
+
+</mapper>
