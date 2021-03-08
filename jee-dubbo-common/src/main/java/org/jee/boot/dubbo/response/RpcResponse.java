@@ -82,5 +82,9 @@ public class RpcResponse<T> implements Serializable {
         msg=rpcResponse.getMsg();
     }
 
+    public static  RpcResponse ok(){
+        return  new RpcResponse();
+    }
+
 
 }
