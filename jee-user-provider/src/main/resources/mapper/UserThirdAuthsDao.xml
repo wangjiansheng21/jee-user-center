@@ -7,11 +7,11 @@
         <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="userId" column="user_id" jdbcType="INTEGER"/>
         <result property="identityType" column="identity_type" jdbcType="OTHER"/>
-        <result property="identifier" column="identifier" jdbcType="VARCHAR"/>
+        <result property="identifier" column="identifier" jdbcType="TINYINT"/>
         <result property="createdTime" column="created_time" jdbcType="TIMESTAMP"/>
         <result property="updatedTime" column="updated_time" jdbcType="TIMESTAMP"/>
         <result property="version" column="version" jdbcType="INTEGER"/>
-        <result property="deleted" column="deleted" jdbcType="OTHER"/>
+        <result property="deleted" column="deleted" jdbcType="TINYINT"/>
     </resultMap>
 
     <!--查询单个-->

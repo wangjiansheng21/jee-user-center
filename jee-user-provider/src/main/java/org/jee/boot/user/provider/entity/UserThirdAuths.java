@@ -20,7 +20,7 @@ public class UserThirdAuths implements Serializable {
     /**
     * 三方授权类型：1=微信，2=qq, 3=weibo
     */
-    private Object identityType;
+    private Byte identityType;
     /**
     * 第三方系统对应的用户唯一标志（如微信的openId）
     */
@@ -32,7 +32,7 @@ public class UserThirdAuths implements Serializable {
     
     private Long version;
     
-    private Object deleted;
+    private Byte deleted;
 
 
     public Long getId() {
@@ -53,10 +53,6 @@ public class UserThirdAuths implements Serializable {
 
     public Object getIdentityType() {
         return identityType;
-    }
-
-    public void setIdentityType(Object identityType) {
-        this.identityType = identityType;
     }
 
     public String getIdentifier() {
@@ -95,8 +91,15 @@ public class UserThirdAuths implements Serializable {
         return deleted;
     }
 
-    public void setDeleted(Object deleted) {
-        this.deleted = deleted;
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
 
+    public void setIdentityType(Byte identityType) {
+        this.identityType = identityType;
+    }
+
+    public void setDeleted(Byte deleted) {
+        this.deleted = deleted;
+    }
 }

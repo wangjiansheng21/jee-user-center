@@ -79,4 +79,17 @@ public class UserInfoApiImpl implements UserInfoApi {
         rpcResponse.setData(userInfoVO);
         return rpcResponse;
     }
+
+    @Override
+    public RpcResponse<UserInfoVO> thirdAuth(String phone, Byte identityType,String identifier) {
+        //根据手机号码查询用户信息
+        RpcResponse<UserInfoVO> response = getUserInfoByPhone(phone);
+        if(!response.isSucces()){
+            return response;
+        }
+        if(response.getData()==null){
+            //插入用户信息
+        }
+        return null;
+    }
 }
