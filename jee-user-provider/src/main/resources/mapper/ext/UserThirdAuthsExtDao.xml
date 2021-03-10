@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jee.boot.user.provider.dao.ext.UserThirdAuthseExtDao">
+
+    <resultMap id="BaseResultMapExt" type="org.jee.boot.user.provider.entity.UserThirdAuths">
+        <!--@Table user_third_auths-->
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="userId" column="user_id" jdbcType="INTEGER"/>
+        <result property="identityType" column="identity_type" jdbcType="OTHER"/>
+        <result property="identifier" column="identifier" jdbcType="TINYINT"/>
+        <result property="createdTime" column="created_time" jdbcType="TIMESTAMP"/>
+        <result property="updatedTime" column="updated_time" jdbcType="TIMESTAMP"/>
+        <result property="version" column="version" jdbcType="INTEGER"/>
+        <result property="deleted" column="deleted" jdbcType="TINYINT"/>
+    </resultMap>
+    <select id="getUserThirdAuthInfo" resultMap="BaseResultMapExt">
+         select
+          id, user_id, identity_type, identifier, created_time, updated_time, version, deleted
+        from user_center.user_third_auths
+        where identity_type = #{identityType} and identifier=#{identifier}
+    </select>
+</mapper>

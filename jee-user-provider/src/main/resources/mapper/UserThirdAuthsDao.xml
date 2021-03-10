@@ -65,8 +65,8 @@
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into user_center.user_third_auths(user_id, identity_type, identifier, created_time, updated_time, version, deleted)
-        values (#{userId}, #{identityType}, #{identifier}, #{createdTime}, #{updatedTime}, #{version}, #{deleted})
+        insert into user_center.user_third_auths(user_id, identity_type, identifier)
+        values (#{userId}, #{identityType}, #{identifier})
     </insert>
 
     <!--通过主键修改数据-->

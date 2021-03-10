@@ -52,4 +52,12 @@ public interface UserThirdAuthsService {
      */
     boolean deleteById(Long id);
 
+    /**
+     * 获取第三方授权信息
+     *
+     * @param identityType 三方授权类型：1=微信，2=qq, 3=weibo
+     * @param identifier   第三方系统对应的用户唯一标志（如微信的openId）
+     * @return
+     */
+    UserThirdAuths getUserThirdAuthInfo(Byte identityType, String identifier);
 }

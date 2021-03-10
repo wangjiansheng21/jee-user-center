@@ -29,7 +29,7 @@ public class UserInfoApiImpl implements UserInfoApi {
         BeanUtils.copyProperties(addUserInfoRequest,userInfo);
         userInfo.setCreatedTime(new Date());
         userInfo.setUpdatedTime(userInfo.getCreatedTime());
-        userInfo.setVersion(0l);
+        userInfo.setVersion(0L);
         userInfo.setDeleted(Byte.parseByte("0"));
         userInfo.setUserStatus(Byte.parseByte("1"));
         userInfoService.insert(userInfo);
@@ -78,18 +78,5 @@ public class UserInfoApiImpl implements UserInfoApi {
         }
         rpcResponse.setData(userInfoVO);
         return rpcResponse;
-    }
-
-    @Override
-    public RpcResponse<UserInfoVO> thirdAuth(String phone, Byte identityType,String identifier) {
-        //根据手机号码查询用户信息
-        RpcResponse<UserInfoVO> response = getUserInfoByPhone(phone);
-        if(!response.isSucces()){
-            return response;
-        }
-        if(response.getData()==null){
-            //插入用户信息
-        }
-        return null;
     }
 }

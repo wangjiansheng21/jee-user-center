@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.jee.boot.user.provider.dao.ext.UserInfoExtDao">
-    <resultMap id="BaseResultMap" type="org.jee.boot.user.provider.entity.UserInfo">
+    <resultMap id="BaseResultMapExt" type="org.jee.boot.user.provider.entity.UserInfo">
         <!--@Table user_info-->
         <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="loginName" column="login_name" jdbcType="VARCHAR"/>
@@ -22,7 +22,7 @@
         <result property="gender" column="gender" jdbcType="TINYINT"/>
     </resultMap>
     <!--根据手机号码获取用户信息-->
-    <select id="getUserInfoByPhone" resultMap="BaseResultMap" parameterType="string">
+    <select id="getUserInfoByPhone" resultMap="BaseResultMapExt" parameterType="string">
         select id,
                login_name,
                pass_word,
@@ -44,7 +44,7 @@
         where phone = #{phone}
     </select>
     <!--根据登录名获取用户基本信息-->
-    <select id="getUserInfoByLoginName" resultMap="BaseResultMap" parameterType="string">
+    <select id="getUserInfoByLoginName" resultMap="BaseResultMapExt" parameterType="string">
         select id,
                login_name,
                pass_word,

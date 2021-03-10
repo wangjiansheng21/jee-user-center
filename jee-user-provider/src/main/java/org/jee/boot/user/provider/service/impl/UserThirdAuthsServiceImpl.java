@@ -1,5 +1,6 @@
 package org.jee.boot.user.provider.service.impl;
 
+import org.jee.boot.user.provider.dao.ext.UserThirdAuthseExtDao;
 import org.jee.boot.user.provider.entity.UserThirdAuths;
 import org.jee.boot.user.provider.dao.UserThirdAuthsDao;
 import org.jee.boot.user.provider.service.UserThirdAuthsService;
@@ -19,6 +20,10 @@ public class UserThirdAuthsServiceImpl implements UserThirdAuthsService {
     @Resource
     private UserThirdAuthsDao userThirdAuthsDao;
 
+
+    @Resource
+    private UserThirdAuthseExtDao userThirdAuthseExtDao;
+
     /**
      * 通过ID查询单条数据
      *
@@ -34,7 +39,7 @@ public class UserThirdAuthsServiceImpl implements UserThirdAuthsService {
      * 查询多条数据
      *
      * @param offset 查询起始位置
-     * @param limit 查询条数
+     * @param limit  查询条数
      * @return 对象列表
      */
     @Override
@@ -75,5 +80,17 @@ public class UserThirdAuthsServiceImpl implements UserThirdAuthsService {
     @Override
     public boolean deleteById(Long id) {
         return this.userThirdAuthsDao.deleteById(id) > 0;
+    }
+
+    /**
+     * 获取第三方授权信息
+     *
+     * @param identityType 三方授权类型：1=微信，2=qq, 3=weibo 必传
+     * @param identifier   第三方系统对应的用户唯一标志（如微信的openId） 必传
+     * @return UserThirdAuths
+     */
+    @Override
+    public UserThirdAuths getUserThirdAuthInfo(Byte identityType, String identifier) {
+        return this.userThirdAuthseExtDao.getUserThirdAuthInfo(identityType, identifier);
     }
 }
