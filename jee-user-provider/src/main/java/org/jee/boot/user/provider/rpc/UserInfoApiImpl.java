@@ -26,7 +26,7 @@ public class UserInfoApiImpl implements UserInfoApi {
     public RpcResponse<Long> addUserInfo(AddUserInfoRequest addUserInfoRequest) {
         RpcResponse rpcResponse = new RpcResponse();
         UserInfo userInfo = new UserInfo();
-        BeanUtils.copyProperties(addUserInfoRequest,userInfo);
+        BeanUtils.copyProperties(addUserInfoRequest, userInfo);
         userInfo.setCreatedTime(new Date());
         userInfo.setUpdatedTime(userInfo.getCreatedTime());
         userInfo.setVersion(0L);
@@ -42,9 +42,9 @@ public class UserInfoApiImpl implements UserInfoApi {
         RpcResponse rpcResponse = new RpcResponse();
         UserInfo userInfo = userInfoService.queryById(userId);
         UserInfoVO userInfoVO = null;
-        if(userInfo!=null){
+        if (userInfo != null) {
             userInfoVO = new UserInfoVO();
-            BeanUtils.copyProperties(userInfo,userInfoVO);
+            BeanUtils.copyProperties(userInfo, userInfoVO);
             rpcResponse.setData(userInfoVO);
         }
         rpcResponse.setData(userInfoVO);
@@ -55,11 +55,11 @@ public class UserInfoApiImpl implements UserInfoApi {
     @Override
     public RpcResponse<UserInfoVO> getUserInfoByPhone(String phone) {
         RpcResponse rpcResponse = new RpcResponse();
-        UserInfo userInfo= userInfoService.getUserInfoByPhone(phone);
+        UserInfo userInfo = userInfoService.getUserInfoByPhone(phone);
         UserInfoVO userInfoVO = null;
-        if(userInfo!=null){
+        if (userInfo != null) {
             userInfoVO = new UserInfoVO();
-            BeanUtils.copyProperties(userInfo,userInfoVO);
+            BeanUtils.copyProperties(userInfo, userInfoVO);
             rpcResponse.setData(userInfoVO);
         }
         rpcResponse.setData(userInfoVO);
@@ -69,14 +69,26 @@ public class UserInfoApiImpl implements UserInfoApi {
     @Override
     public RpcResponse<UserInfoVO> getUserInfoByLoginName(String loginName) {
         RpcResponse rpcResponse = new RpcResponse();
-        UserInfo userInfo= userInfoService.getUserInfoByLoginName(loginName);
+        UserInfo userInfo = userInfoService.getUserInfoByLoginName(loginName);
         UserInfoVO userInfoVO = null;
-        if(userInfo!=null){
+        if (userInfo != null) {
             userInfoVO = new UserInfoVO();
-            BeanUtils.copyProperties(userInfo,userInfoVO);
+            BeanUtils.copyProperties(userInfo, userInfoVO);
             rpcResponse.setData(userInfoVO);
         }
         rpcResponse.setData(userInfoVO);
+        return rpcResponse;
+    }
+
+    @Override
+    public RpcResponse<Boolean> authByPhoneAndPassWord(String phone, String passWord) {
+        RpcResponse rpcResponse = RpcResponse.ok();
+        boolean isPass = false;
+        UserInfo userInfo = userInfoService.getUserInfoByPhone(phone);
+        if (userInfo != null && userInfo.getPassWord().equals(passWord)) {
+            isPass = true;
+        }
+        rpcResponse.setData(isPass);
         return rpcResponse;
     }
 }

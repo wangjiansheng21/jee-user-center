@@ -8,14 +8,15 @@ public interface UserInfoApi {
 
     /**
      * 添加用户基本信息
+     *
      * @param addUserInfoRequest
      * @return
      */
     public RpcResponse<Long> addUserInfo(AddUserInfoRequest addUserInfoRequest);
 
     /**
-     *
      * 根据userId 获取用户基本信息
+     *
      * @param userId
      * @return
      */
@@ -24,6 +25,7 @@ public interface UserInfoApi {
 
     /**
      * 根据手机号码获取用户基本信息
+     *
      * @param phone
      * @return
      */
@@ -32,9 +34,20 @@ public interface UserInfoApi {
 
     /**
      * 根据登录账号查询用户基本信息
+     *
      * @param loginName
      * @return
      */
     public RpcResponse<UserInfoVO> getUserInfoByLoginName(String loginName);
+
+
+    /**
+     * 根据手机号和密码授权
+     *
+     * @param phone
+     * @param passWord
+     * @return
+     */
+    public RpcResponse<Boolean> authByPhoneAndPassWord(String phone, String passWord);
 
 }
