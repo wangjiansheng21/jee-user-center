@@ -45,6 +45,7 @@ public class UserInfoApiImpl implements UserInfoApi {
         if (userInfo != null) {
             userInfoVO = new UserInfoVO();
             BeanUtils.copyProperties(userInfo, userInfoVO);
+            userInfoVO.setUserId(userInfo.getId());
             rpcResponse.setData(userInfoVO);
         }
         rpcResponse.setData(userInfoVO);
@@ -60,6 +61,7 @@ public class UserInfoApiImpl implements UserInfoApi {
         if (userInfo != null) {
             userInfoVO = new UserInfoVO();
             BeanUtils.copyProperties(userInfo, userInfoVO);
+            userInfoVO.setUserId(userInfo.getId());
             rpcResponse.setData(userInfoVO);
         }
         rpcResponse.setData(userInfoVO);
@@ -74,6 +76,7 @@ public class UserInfoApiImpl implements UserInfoApi {
         if (userInfo != null) {
             userInfoVO = new UserInfoVO();
             BeanUtils.copyProperties(userInfo, userInfoVO);
+            userInfoVO.setUserId(userInfo.getId());
             rpcResponse.setData(userInfoVO);
         }
         rpcResponse.setData(userInfoVO);
